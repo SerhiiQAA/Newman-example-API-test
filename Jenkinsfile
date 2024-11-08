@@ -16,7 +16,7 @@ pipeline {
 
     stage('Run API Tests') {
       steps {
-        sh 'newman run шляхи_до_колекції.json'
+        sh 'newman run Performance "Testing.postman_collection.json"'
       }
     }
   }
