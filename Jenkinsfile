@@ -2,7 +2,7 @@ pipeline {
   agent any
 
   tools {
-    nodejs 'NodeJS' // Ім'я NodeJS установки, яке ви задали у налаштуваннях Jenkins
+    nodejs 'Node' // Ім'я NodeJS установки, яке ви задали у налаштуваннях Jenkins
   }
 
   stages {
