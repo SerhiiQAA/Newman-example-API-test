@@ -4,7 +4,7 @@ pipeline {
   stages {
     stage('Checkout') {
       steps {
-        git 'https://github.com/SerhiiQAA/NewmanAPI_Test.git'
+        git branch: 'main', url: 'https://github.com/SerhiiQAA/NewmanAPI_Test.git'
       }
     }
 
@@ -16,7 +16,7 @@ pipeline {
 
     stage('Run API Tests') {
       steps {
-        sh 'newman run Performance "Testing.postman_collection.json"'
+        sh 'newman run "Performance Testing.postman_collection.json"'
       }
     }
   }
