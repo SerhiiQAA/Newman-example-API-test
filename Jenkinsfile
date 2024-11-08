@@ -24,10 +24,21 @@ pipeline {
       }
     }
 
-    stage('Archive Reports') {
+    stage('Publish HTML Report') {
       steps {
-        archiveArtifacts artifacts: 'newman/Performance_Testing_Report.html', allowEmptyArchive: true
+        publishHTML([allowMissing: false,
+                     alwaysLinkToLastBuild: true,
+                     keepAll: true,
+                     reportDir: 'newman',
+                     reportFiles: 'Performance_Testing_Report.html',
+                     reportName: 'API Test Report'])
       }
+    }
+  }
+
+  post {
+    always {
+      archiveArtifacts artifacts: 'newman/Performance_Testing_Report.html', allowEmptyArchive: true
     }
   }
 }
