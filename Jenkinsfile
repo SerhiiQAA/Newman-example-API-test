@@ -14,13 +14,13 @@ pipeline {
 
     stage('Install Newman and Reporter') {
       steps {
-        sh 'npm install -g newman newman-reporter-html'
+        sh 'npm install -g newman newman-reporter-htmlextra'
       }
     }
 
     stage('Run API Tests') {
       steps {
-        sh 'newman run "Performance Testing.postman_collection.json" -r html --reporter-html-export newman/Performance_Testing_Report.html'
+        sh 'newman run "Performance Testing.postman_collection.json" -r htmlextra --reporter-htmlextra-export newman/Performance_Testing_Report.html'
       }
     }
 
