@@ -20,13 +20,13 @@ pipeline {
 
     stage('Run API Tests') {
       steps {
-        sh 'newman run "Performance Testing.postman_collection.json" -r htmlextra --reporter-htmlextra-export newman/Performance_Testing_Report.html'
+        sh 'newman run "Performance Testing.postman_collection.json" -r htmlextra --reporter-htmlextra-export newman/Performance_Testing_Report.html --reporter-htmlextra-title "Performance Testing Report"'
       }
     }
 
     stage('Archive Reports') {
       steps {
-        archiveArtifacts artifacts: 'newman/Performance_Testing_Report.html', onlyIfSuccessful: true
+        archiveArtifacts artifacts: 'newman/Performance_Testing_Report.html', allowEmptyArchive: true
       }
     }
   }
