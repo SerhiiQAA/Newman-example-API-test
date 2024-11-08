@@ -2,7 +2,7 @@ pipeline {
   agent any
 
   tools {
-    nodejs 'Node' // Ім'я NodeJS установки, яке ви задали у налаштуваннях Jenkins
+    nodejs 'Node' // Ім'я NodeJS установки, яке ви налаштували у Jenkins
   }
 
   stages {
@@ -12,15 +12,21 @@ pipeline {
       }
     }
 
-    stage('Install Newman') {
+    stage('Install Newman and Reporter') {
       steps {
-        sh 'npm install -g newman'
+        sh 'npm install -g newman newman-reporter-html'
       }
     }
 
     stage('Run API Tests') {
       steps {
-        sh 'newman run "Performance Testing.postman_collection.json"'
+        sh 'newman run "Performance Testing.postman_collection.json" -r html --reporter-html-export newman/Performance_Testing_Report.html'
+      }
+    }
+
+    stage('Archive Reports') {
+      steps {
+        archiveArtifacts artifacts: 'newman/Performance_Testing_Report.html', onlyIfSuccessful: true
       }
     }
   }
