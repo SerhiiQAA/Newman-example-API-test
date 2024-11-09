@@ -1,2 +1,4 @@
 ### My practice using the Jenkins tool to run the Postman collection# NewmanAPI_Test
-NewmanAPI.png
+
+
+![Alt text](images/NewmanAPI.png
